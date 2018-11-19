@@ -1,0 +1,37 @@
+<!-- Page d'accueil -->
+<h2><i class="fa fa-home"></i> Accueil</h2>
+
+<!-- Liste des articles du blog -->
+<ul class="post-list">
+    <?php 
+  if ($posts){
+    foreach($posts as $post): ?>
+        <li class="post">
+            <h3>
+                <i class="fa fa-hand-o-right"></i>&nbsp;
+                <!-- Lien vers article de blog détaillé avec les commentaires -->
+                <a href="article-<?= intval($post['Id']) ?>" title="Consulter l'article">
+                    <?= htmlspecialchars($post['Title']) ?>
+                </a>
+            </h3>
+            <!-- Seul un extrait de l'article du blog est affiché -->
+            <article><?php  
+
+            if (strlen($post['Contents']) > 50 && strpos($post['Contents'], " ", 50) != false){
+                $position = strpos($post['Contents'], " ", 50);
+                echo substr(htmlspecialchars($post['Contents']), 0, $position);
+                echo "&nbsp;[...]";
+            } else {
+                echo htmlspecialchars($post['Contents']); 
+            }
+            ?></article>
+            <small>
+                Rédigé par <?= htmlspecialchars($post['FirstName']) ?> <?= htmlspecialchars($post['LastName']) ?>
+                le <?= htmlspecialchars($post['CreationTimestamp']) ?>
+            </small>
+        </li>
+    <?php endforeach; 
+    } else {
+        echo "<li>Pas d'article :(</li>";
+        }?>
+</ul>

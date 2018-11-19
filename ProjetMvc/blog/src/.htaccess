@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteRule index.php controlleur/index.php
+RewriteRule admin.php controlleur/admin.php
+RewriteRule add_comment.php controlleur/add_comment.php
+RewriteRule add_post.php controlleur/add_post.php
+RewriteRule article-([0-9]+) controlleur/show_post.php?id=$1
+RewriteRule edit-([0-9]+) controlleur/edit_post.php?id=$1
+RewriteRule delete-([0-9]+) controlleur/delete_post.php?id=$1
